@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package user;
+
+option go_package=".;user";
+
+message User{
+  //The user id to update
+  int32 id = 1 [json_name = "id"];
+  //The user email
+  string email=2 [json_name = "email"];
+  //The user name
+  string name =3 [json_name = "name"];
+  //The user last name
+  string last_name = 4 [json_name = "last_name"];
+  //the user age
+  int32 age = 5 [json_name="age"];
+  //the user status in DB
+  int32 status = 6 [json_name="status"];
+}
+
+message CreateUserRequest{
+  User user = 1 [json_name = "user"] ;
+}
+
+message Id{
+  int32 value = 1 [json_name = "value"];
+}
+
+message EmailAddress{
+  string Value=1 [json_name = "value"];
+}
+
+message CreateUserResponse{
+
+  //The status code of the response
+  CodeResult code=1;
+  //The user created
+  int32 user_id = 2 [json_name = "user_id"] ;
+}
+
+message UpdateUserRequest{
+  User user = 1 [json_name = "user"] ;
+}
+message UpdateUserResponse{
+  //The status code of the response
+  CodeResult code=1;
+}
+
+message GetAllUsersRequest{}
+
+message GetAllUsersResponse{
+  repeated User users =1 [json_name = "user"];
+}
+
+message GetUserResponse{
+  User user =1 [json_name = "user"];
+}
+
+message DeleteUserResponse{
+  //The status code of the response
+  CodeResult code=1 [json_name = "code"];
+}
+
+enum CodeResult {
+  UNKNOWN = 0;
+  OK=1;
+  NOTFOUND=2;
+  FAILED = 3;
+  INVALIDINPUT = 4;
+  NOCHANGES = 5;
+  MISSINGFIELD = 6;
+}
+
+
+service Users{ //UsersService
+  //Get a user by the email
+  rpc GetUser(EmailAddress) returns (GetUserResponse){}
+
+  //Creates a new user record
+  rpc Create(CreateUserRequest) returns (CreateUserResponse){}
+
+  //Gets all users
+  rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse){} //implement server stream
+
+  //Updates the user information by userID
+  rpc Update(UpdateUserRequest) returns (UpdateUserResponse){}
+
+  //Deletes a user
+  rpc Delete(Id) returns (DeleteUserResponse){}
+}
+
