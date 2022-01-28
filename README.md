@@ -8,7 +8,7 @@ This final project of Globant's Golang Bootcamp implements a REST API solution w
 
 This REST API has a USER entity to create, list, get, update and delete a user through CURLs calls or using Postman if you will.
 
-The implemented Databases as repository are Mysql and MongoDB, to pick one just must set the env file in te project root.
+The implemented Databases as repository are Mysql and MongoDB, to pick one just must set the env file in the project root folder.
 
 ## Docs
 
