@@ -4,7 +4,7 @@
 
 ## About
 
-This final project of Gobant's Golang Bootcamp implements a REST API solution with [Go Kit](https://gokit.io/) - [gRPC](https://grpc.io/docs/languages/go/basics/).
+This final project of Globant's Golang Bootcamp implements a REST API solution with [Go Kit](https://gokit.io/) - [gRPC](https://grpc.io/docs/languages/go/basics/).
 
 This REST API has a USER entity to create, list, get, update and delete a user through CURLs calls or using Postman if you will.
 
